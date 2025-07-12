@@ -1,4 +1,4 @@
-const express = ("express");
+const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
@@ -11,6 +11,7 @@ var DB = {
 
     games : [
         {
+
             id : 1,
             titile: "Call of Duty",
             price : 5000.00
@@ -32,6 +33,39 @@ var DB = {
 
 
 
+app.get("/games",(req,res) => {
+    res.statusCode = 200;
+    res.json(DB.games);
+})
+
+app.get("/games/:id",(req,res) =>{
+
+    if(isNaN(req.params.id)){
+        res.sendStatus(400)
+
+    }else{
+
+    }
+
+    var id = parseInt(req.params.id);
+
+    var game = DB.games.find(g => g.id == id)
+
+    if(game != undefined){
+        res.statusCode = 200
+        res.json(game)
+        
+    }else{
+        res.sendStatus(404)
+    }
+
+})
+
+
+
+
+
+
 app.get("/game",(req,res) =>{
     res.statusCode = 200;
     res.json(DB.games);
@@ -49,6 +83,6 @@ app.get("/game",(req,res) =>{
 
 
 
-app.listen(300,() => {
+app.listen(3000,() => {
     console.log("API rodando......");
 })
