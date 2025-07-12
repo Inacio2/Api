@@ -1,8 +1,9 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
-
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
@@ -13,17 +14,17 @@ var DB = {
         {
 
             id : 1,
-            titile: "Call of Duty",
+            title: "Call of Duty",
             price : 5000.00
         },
          {
             id : 2,
-            titile: "Mortal Combat",
+            title: "Mortal Combat",
             price : 2000.00
         },
          {
             id : 3,
-            titile: "PES 2021",
+            title: "PES 2021",
             price : 3000.00
         }
    
@@ -71,7 +72,9 @@ app.get("/game",(req,res) =>{
     res.json(DB.games);
 })
 
+app.post("/game",(req,res) =>{
 
+})
 
 
 
